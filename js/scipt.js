@@ -574,8 +574,8 @@ $(document).ready(function() {
                     district wise data table of india
       #################################################################################*/
 
-    // populating data for maharastra  
-    $("#state-wise-section .state-name").text("Maharashtra");
+    // populating data for uttar pradesh
+    $("#state-wise-section .state-name").text("Uttar Pradesh");
     $.ajax({
         url: "https://api.covid19india.org/data.json",
         method: "GET",
@@ -583,7 +583,7 @@ $(document).ready(function() {
         success: function(result) {
             $.each(result.statewise, function(i, item) {
                 // console.log(item.state);
-                if (item.state === "Maharashtra") {
+                if (item.state === "Uttar Pradesh") {
                     $("#state-wise-section .total-cases-count").text(item.confirmed);
                     $("#state-wise-section .total-deaths-count").text(item.deaths);
                     $("#state-wise-section .total-recovered-count").text(item.recovered);
@@ -594,7 +594,7 @@ $(document).ready(function() {
     });
 
 
-    // data table for maharatra
+    // data table for uttar pradesh
     $.ajax({
         url: "https://api.covid19india.org/v2/state_district_wise.json",
         method: "GET",
@@ -602,7 +602,7 @@ $(document).ready(function() {
         success: function(indiaDistrictWiseData) {
             var dataLength = indiaDistrictWiseData.length;
             for (var i = 0; i < dataLength; i++) {
-                if (indiaDistrictWiseData[i].state === "Maharashtra") {
+                if (indiaDistrictWiseData[i].state === "Uttar Pradesh") {
                     $.each(indiaDistrictWiseData[i].districtData, function(i, item) {
                         $("#table-district-wise tbody").append('<tr>' +
                             ' <td class=' + item.district + '>' + item.district + '</td>' +
@@ -611,14 +611,6 @@ $(document).ready(function() {
                             ' <td>' + item.recovered + '</td>' +
                             ' <td>' + item.deceased + '</td>' +
                             ' </tr>');
-
-
-
-                        // if (item.district === "Ahmednagar") {
-                        //     // alert("a");
-                        //     $("#" + item.district + "").css("color", "green");
-                        //     $("#" + item.district + "").css("background-color", "green");
-                        // }
                     });
                     $('#table-district-wise').DataTable({
                         "aaSorting": []
