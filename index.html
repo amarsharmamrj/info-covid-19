@@ -82,6 +82,9 @@
                                 <li>
                                     <a href="#contact"><span class="desktop-menus-icon"><i class="fa fa-user"></i></span>Contact</a>
                                 </li>
+                                <span id="translate">
+                                    <li id="google_translate_element"></li>
+                                </span>
                             </ul>
                         </div>
                     </div>
@@ -146,6 +149,9 @@
                     <li>
                         <a href="#contact"><span class="desktop-menus-icon"><i class="fa fa-user"></i></span>Contact</a>
                     </li>
+                    <span id="translate-mobile">
+                        <li></li>
+                    </span>
                 </ul>
             </div>
 
@@ -1121,8 +1127,40 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/scipt.js "></script>
+    
+    <!-- Google Translate-->
+    <script type="text/javascript">
+        if (screen.width < 700) {
+            $("#translate-mobile li").attr("id", "google_translate_element");
+            $("#translate li").attr("id", "mobile");
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+
     <script>
         new WOW().init();
+    </script>
+    
+    <script>
+        $(window).bind("load", function() {
+            $("#translate #google_translate_element .skiptranslate .goog-te-gadget-simple").html('<i class="fa fa-language" style="' +
+                '    color: white;' +
+                '    font-size: 20px;' +
+                '"></i>');
+            $("#translate #google_translate_element .skiptranslate .goog-te-gadget-simple").css("background-color", "#ffffff05");
+            $("#translate #google_translate_element .skiptranslate .goog-te-gadget-simple").css("border", "none");
+
+        });
     </script>
 </body>
 
