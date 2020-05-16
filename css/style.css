@@ -892,6 +892,9 @@ textarea {
    ##########################################################################################  */
 
 @media screen and (max-width:576px) {
+     .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+    }       
      .transalate-ul {
         list-style-type: none;
         box-sizing: border-box;
