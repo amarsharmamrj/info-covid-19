@@ -892,6 +892,16 @@ textarea {
    ##########################################################################################  */
 
 @media screen and (max-width:576px) {
+     .transalate-ul {
+        list-style-type: none;
+        box-sizing: border-box;
+        padding-inline-start: 0px;
+        margin-block-end: 0px;
+        margin-block-start: 0px;
+    }
+    .transalate-ul i {
+        font-size: 32px !important;
+    }       
     .custom-scrollbar::-webkit-scrollbar {
         margin-top: 10px;
         width: 8px !important;
