@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    alert("a");
     // sticky navbar
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
