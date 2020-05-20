@@ -28,7 +28,7 @@ const assets = [
 // install event
 self.addEventListener('install', evt => {
     evt.waitUntil(
-        caches.open(staticCacheName).then((cache) => {
+        caches.open(dynamicCacheName).then((cache) => {
             console.log('caching shell assets');
             cache.addAll(assets);
         })
