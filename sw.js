@@ -49,16 +49,30 @@ self.addEventListener('activate', evt => {
 
 // When we change the name we could have multiple cache, to avoid that we need to delet the old cache, so with this function we check the key that is our cache naming, if it is different from the actual naming we delete it, in this way we will always have only the last updated cache.
 
-// fetch event
-self.addEventListener('fetch', evt => {
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
-                return caches.open(dynamicCacheName).then(cache => {
-                    cache.put(evt.request.url, fetchRes.clone());
-                    return fetchRes;
-                })
-            });
+// fetch event Network falling back to cache
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        // first fire a network rquest
+        fetch(event.request).catch(function() {
+            // if rquest fails then look in the cache
+            return caches.match(event.request);
         })
     );
 });
+
+
+
+
+// fetch event
+// self.addEventListener('fetch', evt => {
+//     evt.respondWith(
+//         caches.match(evt.request).then(cacheRes => {
+//             return cacheRes || fetch(evt.request).then(fetchRes => {
+//                 return caches.open(dynamicCacheName).then(cache => {
+//                     cache.put(evt.request.url, fetchRes.clone());
+//                     return fetchRes;
+//                 })
+//             });
+//         })
+//     );
+// });
